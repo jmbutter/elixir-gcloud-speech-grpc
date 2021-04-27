@@ -23,16 +23,15 @@ defmodule GCloud.SpeechAPI do
   @spec request_opts() :: Keyword.t()
   def request_opts() do
     [
-      metadata: authorization_header(),
+      metadata: metadata(),
       content_type: "application/grpc",
       timeout: :infinity
     ]
   end
 
-  defp authorization_header do
-    with {:ok, token} <- Goth.Token.for_scope(@token_scope) do
-      %{"authorization" => "#{token.type} #{token.token}"}
-    end
+  defp metadata do
+    api_key = Application.get_env(:google, :api_key)
+    %{"x-api-key" => api_key}
   end
 
   @doc """

@@ -7,3 +7,6 @@ if creds_path |> File.exists?() do
 else
   config :goth, disabled: true
 end
+
+config :google,
+  api_key: System.get_env("GOOGLE_CLOUD_API_KEY")
