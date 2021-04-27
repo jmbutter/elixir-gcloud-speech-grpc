@@ -11,7 +11,7 @@ defmodule GCloud.SpeechAPI.Streaming.Client.Connection do
 
   require Logger
 
-  @timeout 10000
+  @timeout 500
 
   @spec start_link(target :: pid()) :: {:ok, pid} | {:error, any()}
   def start_link(target \\ self()) do
